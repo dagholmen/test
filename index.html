@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <title>Search Results - Best Plastic Surgeon</title>
+    <style>
+        /* General Reset */
+        .page-container {
+            max-width: 850px;
+            margin: 0 auto; /* Centers the content horizontally */
+            box-sizing: border-box;
+        }
+        
+        body, h1, ul, li, button, input {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #000;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Logo Styling */
+        .logo {
+            width: 100px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        /* Top Section */
+        .center-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .center-section h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .center-section ul {
+            list-style: none;
+            text-align: left;
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 0;
+        }
+
+        .center-section li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .center-section li::before {
+            content: "•";
+            color: #000;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 300px;
+            background-color: #000;
+            color: #fff;
+            font-size: 1.4rem;
+            padding: 15px 25px;
+            margin: 0px auto 0;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-secondary i {
+            transform: scaleX(-1); /* Flips the icon horizontally */
+        }
+        
+        .btn-secondary:hover {
+            opacity: 0.8;
+        }
+
+        .button-text-below {
+            font-size: 1rem;
+            color: #5f6368;
+            margin-top: 10px;
+            text-align: center;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            padding: 0 15px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        /* Search Results */
+        .results-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .results-container::after {
+            content: "";
+            position: absolute;
+            top: 100px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 100px);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 70%, rgba(255, 255, 255, 1) 100%);
+            pointer-events: none;
+        }
+
+        .result {
+            margin-bottom: 5px;
+            line-height: 1.4;
+            position: relative;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .result-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .result-info .practice-name {
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .result-info .url {
+            color: #006621;
+            font-size: 0.9rem;
+        }
+
+        .result-title {
+            font-size: 20px;
+            color: #1a0dab;
+            margin-bottom: 5px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .result-title:hover {
+            text-decoration: underline;
+        }
+
+        .star-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .star-rating .stars {
+            color: #fdd663;
+            font-size: 1rem;
+        }
+
+        .star-rating span {
+            margin-left: 5px;
+            font-size: 0.9rem;
+            color: #5f6368;
+        }
+
+        .result p {
+            font-size: 1rem;
+            color: #545454;
+            margin-top: -3px;
+        }
+
+        .top-result-title {
+            font-weight: bold;
+        }
+
+
+        /* Footer Section */
+        .bold-text {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.7rem;
+            margin: 30px 0;
+            color: #bf2121;
+        }
+
+        .footer-content {
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-section {
+            text-align: center;
+            margin: 40px auto;
+            max-width: 500px;
+        }
+
+        .video-section h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .video-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+    </style>
+</head>
+<body>
+  <div class="page-container">
+    <!-- Logo -->
+    <img src="1s.svg" alt="1s Logo" class="logo">
+
+    <!-- Top Section -->
+    <div class="center-section">
+        <h1>Become the #1 Choice in Your City.</h1>
+        <ul>
+            <li>Appear at the top of Google in your city</li>
+            <li>Get 5-10 new booked patients per week</li>
+            <li>Guaranteed results and exclusivity</li>
+        </ul>
+        <div class="button-container">
+            <a href="tel:+17856308550" class="btn-secondary">
+                <i class="fas fa-phone-alt"></i> Call (785) 630-8550
+            </a>
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" class="search-bar" value="best plastic surgeon near me 📍" readonly>
+    </div>
+
+    <!-- Search Results -->
+    <div class="results-container">
+        <!-- Top Result -->
+        <div class="result">
+            <div class="result-header">
+                <img src="1s.svg" alt="Thumbnail">
+                <div class="result-info">
+                    <div class="practice-name">Dr. Your Name Here Plastic Surgery</div>
+                    <div class="url">https://yourwebsitehere.com</div>
+                </div>
+            </div>
+                <a href="https://bestplasticsurgery.com" target="_blank" class="result-title top-result-title">
+                    Best Plastic Surgery in New York
+                </a>
+            <div class="star-rating">
+                <div class="stars">★★★★★</div>
+                <span>5.0 (999 reviews)</span>
+            </div>
+            <p>Dr. Your Name Here, MD FACS, delivers exceptional results in cosmetic surgery.</p>
+        </div>
+
+        <!-- Competitor Result 1-->
+        <div class="result">
+            <div class="result-header">
+                <img src="plastic-surgeon-2-unhappy.webp" alt="Thumbnail">
+                <div class="result-info">
+                    <div class="practice-name">Losing Plastic Surgery Clinic</div>
+                    <div class="url">https://losingsurgeryclients.com</div>
+                </div>
+            </div>
+            <a href="#" class="result-title">Generic Plastic Surgery Services</a>
+            <p>Providing standard services but patients still prefer Dr. Your Name Here.</p>
+        </div>
+
+        <!-- Competitor Result 2-->
+        <div class="result">
+            <div class="result-header">
+                <img src="plastic-surgeon-3-unhappy.webp" alt="Thumbnail">
+                <div class="result-info">
+                    <div class="practice-name">Nobody Cares Aesthetic Center</div>
+                    <div class="url">https://nobodycaresaesthetics.com</div>
+                </div>
+            </div>
+            <a href="#" class="result-title">Affordable Plastic Surgery</a>
+            <p>We offer budget-friendly options, but losing patients to more experienced surgeons.</p>
+        </div>
+        
+        <!-- Competitor Result 3-->
+        <div class="result">
+            <div class="result-header">
+                <img src="plastic-surgeon-3-unhappy.webp" alt="Thumbnail">
+                <div class="result-info">
+                    <div class="practice-name">Nobody Cares 2 Aesthetic Center</div>
+                    <div class="url">https://nobodycares2aesthetics.com</div>
+                </div>
+            </div>
+            <a href="#" class="result-title">Affordable Plastic Surgery</a>
+            <p>We offer budget-friendly options, but losing patients to more experienced surgeons.</p>
+        </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="footer-content">
+        <div class="bold-text">Patients only choose the TOP results.</div>
+        <div class="video-section">
+            <h3>"Don't wait. You're wasting good sales that you could be getting. Call them now!"</h3>
+        <div class="video-container">
+            <script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/sp38trfs0i.js" async type="module"></script><style>wistia-player[media-id='sp38trfs0i']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/sp38trfs0i/swatch'); display: block; filter: blur(5px); padding-top:55.94%; }</style> <wistia-player media-id="sp38trfs0i"></wistia-player>
+        </div>
+    </div>
+        <div class="center-section">
+            <h1>Become the #1 Choice in Your City.</h1>
+            <ul>
+                <li>Appear at the top of Google in your city</li>
+                <li>Get 5-10 new booked patients per week</li>
+                <li>Guaranteed results and exclusivity</li>
+            </ul>
+            <div class="button-container">
+            <a href="tel:+17856308550" class="btn-secondary">
+                <i class="fas fa-phone-alt"></i> Call (785) 630-8550
+            </a>
+        </div>
+            <div class="button-text-below">✅ I want to be number #1 and fully booked year round</div>
+        </div>
+    </div>
+  </div>
+</body>
+</html>
