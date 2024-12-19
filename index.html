@@ -371,15 +371,14 @@
 <script>
     // Keywords to cycle through
     const keywords = [
-        "plastic surgeon",
+        "best plastic surgeon",
         "breast augmentation",
-        "dental surgeon",
-        "brazilian butt lift",
-        "rhinoplasty surgery"
+        "best orthodontist",
+        "dental veneers",
+        "best nose surgeon"
     ];
 
-    // Base sentence parts
-    const beforeKeyword = "best ";
+    // Static part after the keyword
     const afterKeyword = " near me 📍";
     const searchBar = document.querySelector(".search-bar");
 
@@ -399,7 +398,7 @@
         }
 
         // Update the input field value
-        searchBar.value = beforeKeyword + currentKeyword.slice(0, charIndex) + afterKeyword;
+        searchBar.value = currentKeyword.slice(0, charIndex) + afterKeyword;
 
         // Check if typing or deleting is done
         if (!isDeleting && charIndex === currentKeyword.length) {
