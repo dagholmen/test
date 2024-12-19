@@ -378,7 +378,7 @@
         "nose surgeon"
     ];
 
-    // Base sentence structure
+    // Base sentence parts
     const beforeKeyword = "best ";
     const afterKeyword = " near me 📍";
     const searchBar = document.querySelector(".search-bar");
@@ -389,7 +389,6 @@
 
     function typeEffect() {
         const currentKeyword = keywords[keywordIndex];
-        const currentText = baseText.replace("(keyword)", currentKeyword);
 
         if (isDeleting) {
             // Deleting characters
@@ -400,7 +399,7 @@
         }
 
         // Update the input field value
-        searchBar.value = currentText.slice(0, baseText.indexOf("(keyword)") + charIndex);
+        searchBar.value = beforeKeyword + currentKeyword.slice(0, charIndex) + afterKeyword;
 
         // Check if typing or deleting is done
         if (!isDeleting && charIndex === currentKeyword.length) {
@@ -418,7 +417,6 @@
     // Initialize the effect
     typeEffect();
 </script>
-
 
 </body>
 </html>
