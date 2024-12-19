@@ -278,7 +278,7 @@
 
     <!-- Search Bar -->
     <div class="search-container">
-        <input type="text" class="search-bar" value="best plastic surgeon near me 📍" readonly>
+        <input type="text" class="search-bar" readonly>
     </div>
 
     <!-- Search Results -->
@@ -367,5 +367,57 @@
         </div>
     </div>
   </div>
+
+<script>
+    // Keywords to cycle through
+    const keywords = [
+        "plastic surgeon",
+        "car rental",
+        "orthodontist",
+        "hvac services",
+        "nose surgeon"
+    ];
+
+    // Base sentence structure
+    const baseText = "best (keyword) near me 📍";
+    const searchBar = document.querySelector(".search-bar");
+
+    let keywordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+        const currentKeyword = keywords[keywordIndex];
+        const currentText = baseText.replace("(keyword)", currentKeyword);
+
+        if (isDeleting) {
+            // Deleting characters
+            charIndex--;
+        } else {
+            // Typing characters
+            charIndex++;
+        }
+
+        // Update the input field value
+        searchBar.value = currentText.slice(0, baseText.indexOf("(keyword)") + charIndex);
+
+        // Check if typing or deleting is done
+        if (!isDeleting && charIndex === currentKeyword.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, 1000); // Pause before deleting
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            keywordIndex = (keywordIndex + 1) % keywords.length; // Move to the next keyword
+            setTimeout(typeEffect, 500); // Pause before typing new word
+        } else {
+            setTimeout(typeEffect, isDeleting ? 50 : 100); // Adjust speed for typing/deleting
+        }
+    }
+
+    // Initialize the effect
+    typeEffect();
+</script>
+
+
 </body>
 </html>
